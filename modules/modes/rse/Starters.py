@@ -151,3 +151,7 @@ def Starters() -> NoReturn:
         raise
     except:
         console.print_exception(show_locals=True)
+
+# learning stuff
+def fake_method():
+    console.print("fake")
