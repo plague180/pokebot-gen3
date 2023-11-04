@@ -90,5 +90,54 @@
     },
     "ITEMSTORAGE_HANDLEREMOVEITEM":{
       "I":"0"
+    },
+    "gItems":{
+      "D": "85946dc",
+      "F": "8587d6c",
+      "I": "858000c",
+      "J": "855cee8",
+      "S": "858639c"
+    },
+    "sHardyNatureName":{
+      "D": "862e008",
+      "F": "8620ea8",
+      "I": "86195c0",
+      "J": "85ecda4",
+      "S": "861f3c0"
+    },
+    "gAbilityNames":{
+      "D": "833009e",
+      "F": "832324e",
+      "I": "831b0db",
+      "J": "82ebdc4",
+      "S": "8321999"
+    },
+    "gMoveNames":{
+      "D": "832e0ec",
+      "F": "83212ac",
+      "I": "8319140",
+      "J": "82eacc4",
+      "S": "831f9e0"
+    },
+    "gMoveDescriptionPointers":{
+      "D": "862da80",
+      "F": "8620920",
+      "I": "8619038",
+      "J": "85ec81c",
+      "S": "861ee38"
+    },
+    "gTypeNames":{
+      "D": "832f7a8",
+      "F": "8322968",
+      "I": "831a7fc",
+      "J": "82ebc88",
+      "S": "832109c"
+    },
+    "gSpeciesNames":{
+      "D": "832cf38",
+      "F": "83200f8",
+      "I": "8317f8c",
+      "J": "82ea31c",
+      "S": "831e82c"
     }
   }

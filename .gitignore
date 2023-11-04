@@ -3,11 +3,12 @@ __pycache__
 .venv
 .idea
 .vs
+.vscode
 
 *.gba
-backups/
+.last-requirements-check
 build/
-config/*/
+profiles/*/
 dist/
 logs/
 mgba/

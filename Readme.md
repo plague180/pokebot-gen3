@@ -1,19 +1,25 @@
-# PokéBot Gen3 for mGBA
+# PokéBot Gen3 (libmgba)
 [![Python](https://img.shields.io/badge/python-3670A0?style=for-the-badge&logo=python&logoColor=ffdd54)](https://www.python.org/) [![Discord](https://img.shields.io/badge/Discord-%235865F2.svg?style=for-the-badge&logo=discord&logoColor=white)](https://discord.com/invite/UtxR3cazUa) [![YouTube](https://img.shields.io/badge/YouTube-%23FF0000.svg?style=for-the-badge&logo=YouTube&logoColor=white)](https://www.youtube.com/channel/UCl5dLxULvf6ynUiqRSchrzA) [![Twitter](https://img.shields.io/badge/Twitter-%231DA1F2.svg?style=for-the-badge&logo=Twitter&logoColor=white)](https://twitter.com/40_Cakes)
 
-**PokéBot Gen3 for mGBA** is a Python script, written to automatically shiny hunt in Pokémon Ruby, Sapphire, Emerald, FireRed and LeafGreen.
+**PokéBot Gen3 (libmgba)** is a bot, written in Python that automatically shiny hunts in Pokémon Ruby, Sapphire, Emerald, FireRed and LeafGreen.
 
 Initially created to complete a Prof. Oak and Living ✨Shiny✨ Dex Challenge in Pokémon Emerald, a 🔴24/7 livestream of the challenge can be found ongoing [here](https://www.youtube.com/watch?v=W6OOnrx8g58).
 
 [![🔴24/7✨Shiny✨Hunting Bot](https://img.youtube.com/vi/W6OOnrx8g58/0.jpg)](https://www.youtube.com/watch?v=W6OOnrx8g58)
 
-https://github.com/40Cakes/pokebot-gen3/assets/16377135/a3eed994-e960-4181-9f76-3b36bc9f0619
+https://github.com/40Cakes/pokebot-gen3/assets/16377135/e6cea062-895e-411a-86fb-fe0e6e22c34d
+
+| Main Interface | Load Save State | Debugger |
+|:-:|:-:|:-:|
+|![image](https://github.com/40Cakes/pokebot-gen3/assets/16377135/75c88c35-83c4-4a26-b907-429b02fda564)|![image](https://github.com/40Cakes/pokebot-gen3/assets/16377135/52afa39a-c674-47a7-90ed-3e25e82050f5)|![image](https://github.com/40Cakes/pokebot-gen3/assets/16377135/d017651d-96f1-41cc-a03a-5462c96e027a)|
+| Shiny Notifications | Phase Stats | Milestones |
+|![image](https://github.com/40Cakes/pokebot-gen3/assets/16377135/69230b70-24f2-46b3-bb7e-54241785a932)|![image](https://github.com/40Cakes/pokebot-gen3/assets/16377135/613e73b8-bc20-46aa-92c1-168d566f4e66)|![image](https://github.com/40Cakes/pokebot-gen3/assets/16377135/a8c0f5be-9b81-4be6-8a71-cdf909ef0df0)|
 
 # 📖 Preamble
-- This is still in *early* development, as such, stats/config format and general functionality is subject to change, without warning - make sure you back up your `config/<profile name>/` folder before updating your bot!
-- Reach out in Discord [#bot-support-mgba❔](https://discord.com/channels/1057088810950860850/1139190426834833528) if you have any issues
+- This is still in development, as such, functionality is subject to change without warning - always make sure you back up your `profiles/<profile name>/` folder before updating your bot!
+- Reach out in Discord [#bot-support-libmgba❔](https://discord.com/channels/1057088810950860850/1139190426834833528) if you have any issues
 
-The bot is frame perfect and can cheat by reading data from any point in memory. By default it will attempt to perform most actions, as if a human were playing to make gameplay as representative as possible, some examples:
+The bot is frame perfect and can cheat by reading data from any point in memory. By default it will attempt to perform most actions as if a human were playing to make gameplay as representative as possible, some examples:
 - Starter Pokémon are generated just _1 frame_ after confirming the starter selection, the bot will wait until the battle begins, and the starter Pokémon sprite is visible before resetting
 - It's possible to peek inside un-hatched eggs to view stats and shininess as soon as they're received from the daycare, the bot will wait until the eggs are fully hatched before checking and logging
 - These are intentional design decisions, bot [cheats](#cheatsyml---cheats-config) can be used to bypass them (in most cases)
@@ -21,7 +27,6 @@ The bot is frame perfect and can cheat by reading data from any point in memory.
 ***
 
 # ⚠ Photosensitivity Warning
-- The bot launches mGBA at unbound speed by default, see [`config/keys.yml`](#keysyml---emulator-input-mapping) for a list of keys to set emulation to slower speeds and even disable video/sound output
 - Running mGBA at unbound speeds, will cause **very fast and bright flashing**!
 - Any unbounded video examples on this page will be hidden by default, and marked with **⚠ photosensitivity warning**
 
@@ -32,13 +37,22 @@ The bot is frame perfect and can cheat by reading data from any point in memory.
 
 - Windows (**64-bit**)
 - Linux (**64-bit**)
-  - Note: only tested and confirmed working on **Ubuntu 23.04** and **Debian 12**
+  - Note: only tested and confirmed working on **Ubuntu 23.04, 23.10** and **Debian 12**
+
+### Download the Bot
+To download the latest bot from GitHub, go to the top of the page > click the green **Code** button > **Download ZIP**.
+
+Alternatively, if you'd like to be able to easily pull the latest updates without re-downloading the entire ZIP:
+- Install [GitHub Desktop](https://desktop.github.com/) (you don't need an account)
+- Click **Clone a repository from the Internet...**
+- Use repository URL `https://github.com/40Cakes/pokebot-gen3.git` and choose a save location on your PC
+- Click **Clone**
+- Any time there's a new update, you can pull the latest changes by clicking **Fetch origin**, then **Pull origin**
 
 ### Requirements
-- [Python 3.11](https://www.python.org/downloads/release/python-3110/)
-- Double click `requirements.py` or run `python requirements.py` in a terminal to install Python modules and [libmgba](https://github.com/hanzi/libmgba-py)
-  - **Linux** only: Install the following packages with `apt` or appropriate package manager: `sudo apt install python3-tk libmgba0.10 portaudio19-dev`
-- Place some Pokémon .gba ROMs into the `roms/` folder
+- [Python 3.12](https://www.python.org/downloads/release/python-3120/) (**64-bit**)
+- **Linux** only: Install the following packages with `apt` or appropriate package manager: `sudo apt install python3-tk libmgba0.10 portaudio19-dev`
+- **Note**: running the bot will **automatically** install required Python packages and download + extract [libmgba](https://github.com/hanzi/libmgba-py) - if you're using Python for any other projects, consider using a [venv](https://docs.python.org/3/library/venv.html) to isolate these packages from your base environment
 
 ### Optional
 - [Windows Terminal](https://github.com/microsoft/terminal/releases) - recommended for full 🌈<span style="color:#FF0000">c</span><span style="color:#FF7F00">o</span><span style="color:#FFFF00">l</span><span style="color:#00FF00">o</span><span style="color:#00FFFF">u</span><span style="color:#CF9FFF">r</span>🌈 and  ✨emoji support✨ in the console output
@@ -47,12 +61,10 @@ The bot is frame perfect and can cheat by reading data from any point in memory.
 ***
 
 # ❓ How To Run
-- Set the desired `bot_mode` in config file [`config/general.yml`](#generalyml---general-config)
+- Place some **official** Pokémon .gba ROMs into the `roms/` folder
 - Double click `pokebot.py` or run `python pokebot.py` in a terminal and follow the on-screen steps to create and/or select a profile
 
-While running, the bot will ignore your button presses, if you need to take control of the emulator, press `Tab` to toggle manual bot mode on/off.
-
-The bot ships with the default mGBA input mapping, see [`config/keys.yml`](#keysyml---emulator-input-mapping) to view the default mapping, or customise them to your preference.
+The bot ships with the default mGBA input mapping, see [`profiles/keys.yml`](#keysyml---emulator-input-mapping) to view the default mapping, or customise them to your preference.
 
 The bot will pause once a shiny is encountered. You **must** ensure you are able to escape battle **100% of the time**, otherwise the bot will get stuck. Auto-catching and other features will be added in due time.
 
@@ -63,10 +75,9 @@ If you have a save from mGBA that you'd like to import and use with the bot, the
 
 - In mGBA, run a game and load into the save file
 - **File** > **Save State File...** > **Save**
-- Double click `import.py` or run `python import.py` in a terminal to launch the save importer tool
+- Double click `pokebot.py` or run `python pokebot.py` in a terminal > type a profile **name** > click **Load Existing Save**
 - Open the save state file you just saved
-- A new bot profile will be created in the `config/` folder and set up all required files
-- If the importer tool detects files in the `stats/` or `config/` folders from old versions of the bot (from commit `ec5d702`, 7th October, 2023 or earlier), then they will be copied into your new profile
+- A new bot profile will be created in the `profiles/` folder and set up all required files
 
 ***
 
@@ -79,7 +90,7 @@ Variations of games, languages and revisions may have different memory offsets, 
 
 ROM hacks will likely not work, and are ❌ **not supported** or planned to be supported!
 
-The ROMs in the `roms/` folder are checked and verified against a list of official game hashes. If you **really** want to test a ROM hack with the bot, you must add the SHA1 hash of the ROM to `modules/Roms.py`.
+The ROMs in the `roms/` folder are checked and verified against a list of all known official gen3 game hashes. If you **really** want to test a ROM hack with the bot, you must add the SHA1 hash of the ROM to `modules/Roms.py`.
 
 The SHA1 hash of a ROM can be calculated with any of the following methods:
 - [ROM Hasher](https://www.romhacking.net/utilities/1002/)
@@ -91,15 +102,25 @@ Please do not seek support or complain if you find that your ROM hack does not w
 ***
 
 # 🤖 Bot Modes
-Modify the `bot_mode` parameter in `config/general.yml` to any of the following modes.
+- The bot mode can be changed at any time while the bot is running by using the menu on the UI
+- `Manual` mode is the default mode
+- Press `Tab` to toggle between `Manual` mode and a previously selected mode
+
 ***
-## 🔧 `manual`
+## 🔧 Manual
 Manual mode simply disables all bot inputs, allowing you to track encounters and stats on your own shiny hunts as you play the game normally.
 
-## 🔄 `spin`
-Start the bot while in the overworld, in any patch of grass/water/cave.
-The bot will mash random directions to spin on a single tile.
-- `spin` mode is useful for Safari Zone and [repel tricking](https://bulbapedia.bulbagarden.net/wiki/Appendix:Repel_trick) as it doesn't count steps!
+## 🔄 Spin
+Spin clockwise on a single tile, useful for Safari Zone and [repel tricking](https://bulbapedia.bulbagarden.net/wiki/Appendix:Repel_trick) as it doesn't count steps
+
+Start the mode while in the overworld, in any patch of grass/water/cave.
+
+<details>
+<summary>🎥 Click here to show a video example</summary>
+
+https://github.com/40Cakes/pokebot-gen3/assets/16377135/32ced886-062b-483b-86c4-11be8ce55943
+
+</details>
 
 <details>
 <summary>✅🟨❌ Click here for support information</summary>
@@ -107,40 +128,42 @@ The bot will mash random directions to spin on a single tile.
 |          | 🟥 Ruby | 🔷 Sapphire | 🟢 Emerald | 🔥 FireRed | 🌿 LeafGreen |
 |:---------|:----:|:--------:|:-------:|:-------:|:---------:|
 | English  |  ✅   |    ✅     |    ✅    |    ✅    |     ✅     |
-| Japanese |  -   |    -     |    -    |    -    |     -     |
-| German   |  -   |    -     |    -    |    -    |     -     |
-| Spanish  |  -   |    -     |    -    |    -    |     -     |
-| French   |  -   |    -     |    -    |    -    |     -     |
-| Italian  |  -   |    -     |    -    |    -    |     -     |
+| Japanese |  🟨   |    🟨     |    🟨    |    🟨    |     🟨     |
+| German   |  🟨   |    🟨     |    🟨    |    🟨    |     🟨     |
+| Spanish  |  🟨   |    🟨     |    🟨    |    🟨    |     🟨     |
+| French   |  🟨   |    🟨     |    🟨    |    🟨    |     🟨     |
+| Italian  |  🟨   |    🟨     |    🟨    |    🟨    |     🟨     |
 </details>
 
-## 💼 `starters`
+## 💼 Starters
 Soft reset for starter Pokémon.
 
-For modes that use soft resets such as starters, the bot attempts to hit a unique frames to reduce the amount of repeated, identical Pokémon, this may cause soft resets to take progressively longer.
+<details>
+<summary>🎥 Click here to show a video example</summary>
 
-- If resets begin to take too long, it is recommended to start a new save file with a different TID to reset this delay
-- If you notice too many dupes or resets taking too long, consider enabling `starters_rng` in [`config/cheats.yml`](#cheatsyml---cheats-config)
+https://github.com/40Cakes/pokebot-gen3/assets/16377135/54f7f774-8cc1-4c6e-a6f7-b8474b66637b
 
-### R/S/E
-1. Select the `starter` in `config/general.yml` - `treecko`, `torchic` or `mudkip`
-2. Face the starters bag, and save the game (**in-game, not a save state**)
-3. Start the bot
+</details>
 
-### FR/LG
-1. Select the `starter` in `config/general.yml` - `bulbasaur`, `charmander` or `squirtle`
+- For modes that use soft resets such as starters, the bot will track RNG to ensure a unique frame is hit after every reset, this is to prevent repeatedly generating an identical Pokémon, this will cause soft resets to take progressively longer over time
+- If resets begin to take too long, it is recommended to start a new save file with a different TID to reset this delay or check out [`profiles/cheats.yml`](#cheatsyml---cheats-config)
+- **Note**: Even though you set the trainer to face the desired PokéBall, it is still important to set the correct `starter` in the config! This option is used by the bot to track frames to ensure a unique starter is generated every time
+- **Note**: For the time being, Johto starters will automatically enable the `starters` option in [`profiles/cheats.yml`](#cheatsyml---cheats-config), the shininess of the starter is checked via memhacks as start menu navigation is WIP (in future, shininess will be checked via the party summary menu)
+
+### FireRed and LeafGreen (Kanto)
+1. Select the `starter` in `profiles/general.yml` - `Bulbasaur`, `Charmander` or `Squirtle`
 2. Face the desired PokéBall in Oak's lab, save the game (**in-game, not a save state**)
 3. Start the bot
 
-- **Note**: Even though you set the trainer to face the desired PokéBall, it is still important to set `starter` in the config! This option is used by the bot to track frames to ensure a unique starter is generated every time
-
-### Johto (Emerald)
-1. Select the `starter` in `config/general.yml` - `chikorita`, `cyndaquil` or `totodile`
+### Emerald (Johto)
+1. Select the `starter` in `profiles/general.yml` - `Chikorita`, `Cyndaquil` or `Totodile`
 2. Face the desired PokéBall in Birch's lab, save the game (**in-game, not a save state**)
 3. Start the bot
 
-- **Note**: Even though you set the trainer to face the desired PokéBall, it is still important to set `starter` in the config! This option is used by the bot to track frames to ensure a unique starter is generated every time
-- **Note**: For the time being, Johto starters will automatically enable the `starters` option in [`config/cheats.yml`](#cheatsyml---cheats-config), the shininess of the starter is checked via memhacks as start menu navigation is WIP (in future, shininess will be checked via the party summary menu)
+### Ruby, Sapphire and Emerald (Hoenn)
+1. Select the `starter` in `profiles/general.yml` - `Treecko`, `Torchic` or `Mudkip`
+2. Face the starters bag, and save the game (**in-game, not a save state**)
+3. Start the bot
 
 <details>
 <summary>✅🟨❌ Click here for support information</summary>
@@ -155,8 +178,14 @@ For modes that use soft resets such as starters, the bot attempts to hit a uniqu
 | Italian  |    -    |      -      |     -      |     -      |      -       |
 </details>
 
-## 🎣 `fishing`
-Start the bot facing the water, with any fishing rod registered.
+## 🎣 Fishing
+Start the mode while facing the water, with any fishing rod registered.
+<details>
+<summary>🎥 Click here to show a video example</summary>
+
+https://github.com/40Cakes/pokebot-gen3/assets/16377135/4317ba99-8854-4ce5-b054-d6bf652c7b28
+
+</details>
 
 <details>
 <summary>✅🟨❌ Click here for support information</summary>
@@ -171,44 +200,72 @@ Start the bot facing the water, with any fishing rod registered.
 | Italian  |  -   |    -     |    -    |    -    |     -     |
 </details>
 
+## 🚲 Bunny Hop
+Bunny hop on the spot with the [Acro Bike](https://bulbapedia.bulbagarden.net/wiki/Acro_Bike), useful for Safari Zone and [repel tricking](https://bulbapedia.bulbagarden.net/wiki/Appendix:Repel_trick) as it doesn't count steps.
+
+Start the mode while in the overworld, in any patch of grass/cave, with the Acro Bike registered.
+- **Note**: `Bunny Hop` is ~10% slower encounters/h on average than `spin` mode
+
+<details>
+<summary>🎥 Click here to show a video example</summary>
+  
+https://github.com/40Cakes/pokebot-gen3/assets/16377135/bedbd712-c57c-4d26-923b-ee3fd314afe3
+
+</details>
+
+<details>
+<summary>✅🟨❌ Click here for support information</summary>
+
+|          | 🟥 Ruby | 🔷 Sapphire | 🟢 Emerald |
+|:---------|:----:|:--------:|:-------:|
+| English  |  ✅   |    ✅     |    ✅    |
+| Japanese |  -   |    -     |    -    |
+| German   |  -   |    -     |    -    |
+| Spanish  |  -   |    -     |    -    |
+| French   |  -   |    -     |    -    |
+| Italian  |  -   |    -     |    -    |
+</details>
+
 ***
 
 # 🛠 Configuration
 Configuration files are loaded and validated against a schema, once at bot launch. Any changes made while the bot is running will not take effect until the bot is stopped and restarted.
 
 ## 🚧 Work in progress 🚧
-A lot of the config in `.yml` files is is placeholder for future/planned features.
+A lot of the config in `.yml` files is placeholder for future/planned features.
 
 ## Multi-instance botting
-The bot stores all profile information, such as save games, screenshots, statistics, etc. in the profile `config/<profile name>/`) folder, which is automatically created once you create a new profile in the GUI.
+The bot stores all profile information, such as save games, screenshots, statistics, etc. in the profile `profiles/<profile name>/`) folder, which is automatically created once you create a new profile in the GUI.
 
 Running multiple instances of the bot is as easy as starting the bot multiple times and loading a different profile each time. You should **not** run multiple instances of the bot with the same profile simultaneously!
 
-Statistics are saved into a subfolder of your profile `config/<profile name>/stats/`.
+Statistics are saved into a subfolder of your profile `profiles/<profile name>/stats/`.
 
-The bot will first attempt to load individual config files from your profile folder (`config/<profile name>/config/`), if that folder does not exist or any of the configuration files are missing, it will load the default config file in the `config/` folder. This allows you to selectively override specific config files on a per profile basis.
+The bot will first attempt to load individual config files from your profile folder (`profiles/<profile name>/`), if that folder does not exist or any of the configuration files are missing, it will load the default config file in the `profiles/` folder. This allows you to selectively override specific config files on a per-profile basis.
 
 Example:
 ```
-├── /config
-    │   battle.yml             <-- loaded for all profiles
-    │   catch_block.yml        <-- loaded for all profiles
-    │   cheats.yml             <-- loaded for all profiles
-    │   CustomCatchFilters.py  <-- loaded for all profiles
-    │   CustomHooks.py         <-- loaded for all profiles
-    │   discord.yml            <-- loaded for all profiles except my-pokemon-emerald-profile
-    │   general.yml            <-- loaded for all profiles except my-pokemon-emerald-profile and my-firered-profile
-    │   logging.yml            <-- loaded for all profiles
-    │   obs.yml                <-- loaded for all profiles
+├── /profiles
     │
-    ├── /my-pokemon-emerald-profile
-    │   └───/config
-    |           discord.yml    <-- loaded for my-pokemon-emerald-profile
-    │           general.yml    <-- loaded for my-pokemon-emerald-profile
+    ├── /emerald-profile
+    │     current_save.sav
+    │     current_state.ss1
+    │     discord.yml          <-- config loaded for 'emerald-profile'
+    │     general.yml          <-- config loaded for 'emerald-profile'
     │
-    ├── /my-firered-profile
-        └───/config
-                general.yml    <-- loaded for my-firered-profile
+    ├── /firered-profile
+    │     current_save.sav
+    │     current_state.ss1
+    │     general.yml          <-- config loaded for 'firered-profile'
+    │
+    │   catch_block.yml        <-- config loaded for all profiles
+    │   cheats.yml             <-- config loaded for all profiles
+    │   customcatchfilters.py  <-- config loaded for all profiles
+    │   customhooks.py         <-- config loaded for all profiles
+    │   discord.yml            <-- config loaded for all profiles except 'emerald-profile'
+    │   general.yml            <-- config loaded for all profiles except 'emerald-profile' and 'firered-profile'
+    │   logging.yml            <-- config loaded for all profiles
+    │   obs.yml                <-- config loaded for all profiles
 ```
 
 ## `keys.yml` - Emulator input mapping
@@ -227,6 +284,7 @@ This file controls keyboard to GBA button mappings.
 - Toggle audio output on/off: `B`
 - Zoom window scaling in/out: `+`, `-`
 - Create save state: `Ctrl + S`
+- Load save state menu: `Ctrl + L`
 - Reset emulator/reboot game: `Ctrl + R`
 - Exit the bot and emulator: `Ctrl + Q`
 - Emulator speed:
@@ -241,9 +299,7 @@ This file controls keyboard to GBA button mappings.
 <summary>Click to expand</summary>
 
 ### General
-`bot_mode` - set to desired mode (see [🤖 Bot Modes](#-bot-modes))
-
-`starter` - used when `bot_mode` set to `starters` (see [💼 starters](#-starters))
+`starter` - choose which starter Pokémon to hunt for, used when bot mode is set to `starters` (see [💼 starters](#-starters))
 
 </details>
 
@@ -261,12 +317,28 @@ The following `console` options will control how much data is displayed in the P
 - `encounter_moves`
 - `statistics`
 
-### Backups
-`backup_stats` - zips up and backup `stats/` folder every `n` total encounters
-- Files in `stats/` are known to get corrupted during power outages
-- Backups are stored in `backups/`
-- Make sure you regularly delete old backups (especially if your stats folder is large!)
-- Set to `0` to disable
+### Save raw Pokémon data (.pk3)
+The bot can dump individual Pokémon files (.pk3 format) to be managed/transferred in the [PKHeX save editor](https://github.com/kwsch/PKHeX).
+
+The Pokémon are dumped to the `pokemon/` folder in your profile, in the following format:
+
+`273 ★ - SEEDOT - Modest [180] - C88CF14B19C6.pk3` (`<nat_dex_num> <shiny ★> - <mon_name> - <nature> [<IV sum>] - <pid>.pk3`)
+
+`save_pk3`:
+- `all` - dump all encounters
+- `shiny` - dump shiny encounters
+- `custom` - dump custom catch filter encounters
+
+Feel free to share any rare/interesting .pk3 files in [#pkhexchange💱](https://discord.com/channels/1057088810950860850/1123523909745135616)!
+
+### Automatically add Pokémon to PC storage (.pk3)
+While auto-catch is currently still a work in progress, the following option automatically import encountered Pokémon into your PC storage.
+
+Imported Pokémon will be placed into the first available PC slot, in a regular PokéBall.
+
+If space is available in the PC, and the Pokémon was successfully imported, the bot will run from the encounter and continue to hunt.
+
+`import_pk3` - enable automatic .pk3 import to PC storage
 
 </details>
 
@@ -405,7 +477,7 @@ Enable WebSockets in **OBS** > **Tools** > **Websocket Server Settings** > **Ena
 #### OBS WebSocket Parameters
 `shiny_delay` - delay catching a shiny encounter by `n` frames, useful to give you viewers some time to react before saving a replay
 
-`discord_delay` - delay Discord webhooks by `n` frames, prevent spoilers if there is a stream delay
+`discord_delay` - delay Discord webhooks by `n` seconds, prevent spoilers if there is a stream delay
 
 `screenshot` - take OBS screenshot of shiny encounter
 - **Note**: **OBS** > **Settings** > **Hotkeys** > **Screenshot Output** must be set to **Ctrl + F11**
@@ -416,7 +488,7 @@ Enable WebSockets in **OBS** > **Tools** > **Websocket Server Settings** > **Ena
 - **Note**: **OBS** > **Settings** > **Hotkeys** > **Replay Buffer** > **Save Replay** must set to **Ctrl + F12**
 - The bot does **not** emulate keystrokes, it simply sends a `TriggerHotkeyByKeySequence` (**Ctrl + F12**) WebSocket command
 
-`replay_buffer_delay` - delay saving OBS replay buffer by `n` frames
+`replay_buffer_delay` - delay saving OBS replay buffer by `n` seconds
 - Runs in a separate thread and will not pause main bot thread
 - If the replay buffer is long enough, it will also capture some encounters after the shiny encounter
 
@@ -449,9 +521,15 @@ All HTTP responses are in JSON format.
 
 `GET /shiny_log` returns a detailed list of all shiny Pokémon encounters (`shiny_log.json`)
 
+`GET /stats` returns the phase and total statistics (`totals.json`)
+
 `GET /encounter_rate` returns the current encounter rate (encounters per hour)
 
-`GET /stats` returns the phase and total statistics (`totals.json`)
+`GET /event_flags` returns all event flags for the current save file (optional parameter `?flag=FLAG_NAME` to get a specific flag)
+
+`GET /emulator` returns information about the emulator core + the current loaded game/profile
+
+`GET /fps` returns a list of emulator FPS (frames per second), in intervals of 1 second, for the previous 60 seconds
 
 </details>
 
@@ -463,24 +541,48 @@ All HTTP responses are in JSON format.
 - Set **TEXT SPEED** to **FAST**
 - Set **BATTLE SCENE** to **OFF**
 - Utilise [repel tricks](https://bulbapedia.bulbagarden.net/wiki/Appendix:Repel_trick) to boost encounter rates of target Pokémon
-- Using `bot_mode` `spin` or `bunny_hop` and repels will become effectively infinite + steps won't be counted in Safari Zone
+- Using modes `Spin` or `Bunny Hop` and repels will become effectively infinite + steps won't be counted in Safari Zone
 - Use a lead Pokémon with encounter rate boosting [abilities](https://bulbapedia.bulbagarden.net/wiki/Category:Abilities_that_affect_appearance_of_wild_Pok%C3%A9mon), such as **[Illuminate](https://bulbapedia.bulbagarden.net/wiki/Illuminate_(Ability))**
 - Use a lead Pokémon with a [short cry](https://docs.google.com/spreadsheets/d/1rmtNdlIXiif1Sz20i-9mfhFdoqb1VnAOIntlr3tnPeU)
 - Use a lead Pokémon with a single character nickname
-- Use a non-shiny lead Pokémon (shiny animation takes a few frames)
+- Don't use a shiny lead Pokémon (shiny animation takes a few frames at the start of every battle)
+
+***
+
+# 🐛 Debugging
+
+The bot supports auto-starting a profile and can also be launched into a 'debug' mode which can aid bot development.
+
+```
+positional arguments:
+  profile               Profile to initialize. Otherwise, the profile selection menu will appear.
+
+options:
+  -h, --help            show this help message and exit
+  -m {Manual,Spin,Starters,Fishing,Bunny Hop}, --bot-mode {Manual,Spin,Starters,Fishing,Bunny Hop}
+                        Initial bot mode (default: Manual)
+  -s {0,1,2,3,4}, --emulation-speed {0,1,2,3,4}
+                        Initial emulation speed (0 for unthrottled; default: 1)
+  -nv, --no-video       Turn off video output by default
+  -na, --no-audio       Turn off audio output by default
+  -t, --always-on-top   Keep the bot window always on top of other windows
+  -d, --debug           Enable extra debug options and a debug menu
+```
 
 ***
 
 # ❤ Attributions
 
 - [mGBA](https://github.com/mgba-emu/mgba)
+- [libmgba-py](https://github.com/hanzi/libmgba-py/)
 
 Other awesome PokéBot projects:
 
 - [PokéBot NDS](https://github.com/wyanido/pokebot-nds/)
 
-This project would not be possible without the symbols tables from the Pokémon decompilation projects:
+This project would not be possible without the decompiled symbol tables and other various data from the following projects:
 
-- [Pokémon Emerald](https://github.com/pret/pokeemerald) ([symbols](https://github.com/pret/pokeemerald/tree/symbols))
-- [Pokémon Ruby and Sapphire](https://github.com/pret/pokeruby) ([symbols](https://github.com/pret/pokeruby/tree/symbols))
-- [Pokémon FireRed and LeafGreen](https://github.com/pret/pokefirered) ([symbols](https://github.com/pret/pokefirered/tree/symbols))
+- [Pokémon Emerald decompilation](https://github.com/pret/pokeemerald) ([symbols](https://github.com/pret/pokeemerald/tree/symbols))
+- [Pokémon Ruby and Sapphire decompilation](https://github.com/pret/pokeruby) ([symbols](https://github.com/pret/pokeruby/tree/symbols))
+- [Pokémon FireRed and LeafGreen decompilation](https://github.com/pret/pokefirered) ([symbols](https://github.com/pret/pokefirered/tree/symbols))
+- PKHeX Plugin: [MissingEventFlagsCheckerPlugin](https://github.com/fattard/MissingEventFlagsCheckerPlugin) (event flags data)
